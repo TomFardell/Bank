@@ -1,7 +1,6 @@
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+package main;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class Account {
