@@ -7,6 +7,9 @@ import java.awt.*;
 public class AccountLoginScreen extends Screen {
 
     private GridBagConstraints gbc;
+    private JLabel numberLabel, passwordLabel, badLoginLabel;
+    private JTextField numberField, passwordField;
+    private JButton loginButton, backButton;
 
     public AccountLoginScreen(GUI gui) {
         super(gui);
@@ -14,36 +17,50 @@ public class AccountLoginScreen extends Screen {
 
     @Override
     protected void setupComponents() {
-        labels.put("number", new JLabel("Number:"));
-        labels.put("password", new JLabel("Password:"));
-        labels.put("badLogin", new JLabel(""));
+        numberLabel = new JLabel("Number:");
+        passwordLabel = new JLabel("Password:");
+        badLoginLabel = new JLabel("");
 
-        textFields.put("number", new JTextField());
-        textFields.put("password", new JTextField());
+        numberField = new JTextField(10);
+        passwordField = new JPasswordField(10);
 
-        buttons.put("login", new JButton("Login"));
-        buttons.get("login").addActionListener(e -> loginButtonPressed());
-        buttons.put("back", new JButton("Back"));
-        buttons.get("back").addActionListener(e -> backButtonPressed());
+        loginButton = new JButton("Login");
+        backButton = new JButton("Back");
+
+        loginButton.addActionListener(e -> loginButtonPressed());
+        backButton.addActionListener(e -> backButtonPressed());
     }
 
     @Override
     protected void setupPanel() {
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        super.setupPanel();
         panel.setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(10, 10, 10, 10);
 
-        addGB(buttons.get("back"), 0, 0);
-        addGB(labels.get("badLogin"), 1, 1, 2);
-        addGB(labels.get("number"), 1, 2);
-        addGB(textFields.get("number"), 2, 2);
-        addGB(labels.get("password"), 1, 3);
-        addGB(textFields.get("password"), 2, 3);
-        addGB(buttons.get("login"), 1, 4, 2);
+        addGB(numberLabel, 1, 2);
+        addGB(passwordLabel, 1, 3);
+
+        addGB(badLoginLabel, 1, 1, 2);
+        addGB(numberField, 2, 2);
+        addGB(passwordField, 2, 3);
+
+        addGB(loginButton, 1, 4, 2);
+        addGB(backButton, 0, 0);
+
+        setLabelAppearance1(numberLabel);
+        setLabelAppearance1(passwordLabel);
+
+        setLabelAppearance1(badLoginLabel);
+        setTextFieldAppearance1(numberField);
+        setTextFieldAppearance1(passwordField);
+
+        setButtonAppearance1(loginButton);
+        setButtonAppearance1(backButton);
+
     }
 
     // Given a component and x, y and width, places the component on the

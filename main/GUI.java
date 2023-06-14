@@ -21,7 +21,11 @@ public class GUI {
         setupCardPanel();
 
         frame.add(cardPanel, BorderLayout.CENTER);
+
         frame.setTitle("Bank");
+        frame.setPreferredSize(new Dimension(600, 400));
+        frame.setLocation(400, 200);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

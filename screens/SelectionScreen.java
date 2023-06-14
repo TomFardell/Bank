@@ -6,26 +6,30 @@ import java.awt.*;
 
 public class SelectionScreen extends Screen {
 
+    private JButton accountButton, bankButton;
+
     public SelectionScreen(GUI gui) {
         super(gui);
     }
 
     @Override
     protected void setupComponents() {
-        buttons.put("account", new JButton("Account Login"));
-        buttons.get("account").addActionListener(e -> accountButtonPressed());
-        buttons.put("bank", new JButton("Bank View"));
-        buttons.get("bank").addActionListener(e -> bankButtonPressed());
+        accountButton = new JButton("Account Login");
+        bankButton = new JButton("Bank View");
+
+        accountButton.addActionListener(e -> accountButtonPressed());
+        bankButton.addActionListener(e -> bankButtonPressed());
+
+        setButtonAppearance1(accountButton);
+        setButtonAppearance1(bankButton);
     }
 
     @Override
     protected void setupPanel() {
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panel.setLayout(new GridLayout(2, 1));
-
-        panel.add(buttons.get("account"));
-        panel.add(buttons.get("bank"));
+        super.setupPanel();
+        panel.setLayout(new GridLayout(2, 1, 0, 10));
+        panel.add(accountButton);
+        panel.add(bankButton);
     }
 
     private void accountButtonPressed() {
