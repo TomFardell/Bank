@@ -7,6 +7,7 @@ import java.awt.*;
 public class GUI {
 
     private Bank bank;
+    private Account selectedAccount;
 
     private JFrame frame;
     private JPanel cardPanel;
@@ -29,6 +30,18 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public Account getSelectedAccount() {
+        return selectedAccount;
+    }
+
+    public void setSelectedAccount(Account account) {
+        selectedAccount = account;
     }
 
     // Creates a card layout containing the panel from each type of screen

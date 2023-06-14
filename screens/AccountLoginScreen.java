@@ -53,8 +53,8 @@ public class AccountLoginScreen extends Screen {
 
         setLabelAppearance1(numberLabel);
         setLabelAppearance1(passwordLabel);
-
         setLabelAppearance1(badLoginLabel);
+
         setTextFieldAppearance1(numberField);
         setTextFieldAppearance1(passwordField);
 
@@ -78,7 +78,28 @@ public class AccountLoginScreen extends Screen {
     }
 
     private void loginButtonPressed() {
-        // TODO actually add login system here
+        int number;
+
+        try {
+            number = Integer.parseInt(numberField.getText());
+        } catch (NumberFormatException e) {
+            badLoginLabel.setText("Number format incorrect");
+            return;
+        }
+
+        String password = passwordField.getText();
+        Account account = gui.getBank().getAccount(number);
+
+        if (account == null) {
+            badLoginLabel.setText("No such account exists");
+            return;
+        }
+        if (!account.isPassword(password)) {
+            badLoginLabel.setText("Incorrect password");
+            return;
+        }
+
+        gui.setSelectedAccount(account);
         gui.showScreen("account");
     }
 
