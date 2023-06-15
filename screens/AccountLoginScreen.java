@@ -79,7 +79,7 @@ public class AccountLoginScreen extends Screen {
         }
 
         String password = passwordField.getText();
-        Account account = gui.getBank().getAccount(number);
+        Account account = gui.getBank().getAccountOfNumber(number);
 
         if (account == null) {
             badLoginLabel.setText("No such account exists");

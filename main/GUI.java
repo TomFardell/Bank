@@ -28,7 +28,7 @@ public class GUI {
         frame.add(cardPanel, BorderLayout.CENTER);
 
         frame.setTitle("Bank");
-        frame.setPreferredSize(new Dimension(600, 400));
+        frame.setPreferredSize(new Dimension(900, 500));
         frame.setLocation(400, 200);
 
         // Saves the accounts when the window closes
@@ -66,12 +66,14 @@ public class GUI {
         accountScreen = new AccountScreen(this);
         withdrawScreen = new WithdrawScreen(this);
         depositScreen = new DepositScreen(this);
+        bankScreen = new BankScreen(this);
 
         cardPanel.add("selection", selectionScreen.getPanel());
         cardPanel.add("accountLogin", accountLoginScreen.getPanel());
         cardPanel.add("account", accountScreen.getPanel());
         cardPanel.add("withdraw", withdrawScreen.getPanel());
         cardPanel.add("deposit", depositScreen.getPanel());
+        cardPanel.add("bank", bankScreen.getPanel());
     }
 
     // Shows the Screen with the inputted name
@@ -84,6 +86,7 @@ public class GUI {
         accountScreen.refreshText();
         withdrawScreen.refreshText();
         depositScreen.refreshText();
+        bankScreen.refreshText();
     }
 
     public static void main(String[] args) {

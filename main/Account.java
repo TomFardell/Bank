@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Account {
 
+    public static final int NUMBER_OF_FIELDS = 4;
     private static final String ACCOUNT_NUMBER_FILE_NAME = "number.txt";
 
     private int number;
@@ -13,7 +14,7 @@ public class Account {
     private double balance;
     private String password;
 
-    public Account(String forename, String surname, String password, int balance) {
+    public Account(String forename, String surname, String password, double balance) {
         this.number = getNextNumber();
         this.forename = forename;
         this.surname = surname;
@@ -50,6 +51,23 @@ public class Account {
         return String.format("£%.2f", balance);
     }
 
+    // Method to help display information about accounts
+    public String getTextFromCode(int code) {
+        if (code == 0) {
+            return number + "";
+        }
+        if (code == 1) {
+            return getFullName();
+        }
+        if (code == 2) {
+            return getFormattedBalance();
+        }
+        if (code == 3) {
+            return password;
+        }
+        return "";
+    }
+
     public String getForename() {
         return forename;
     }
@@ -74,7 +92,6 @@ public class Account {
         this.password = password;
     }
 
-    // More secure than just a getter
     public boolean isPassword(String password) {
         return password.equals(this.password);
     }

@@ -13,7 +13,7 @@ public class Bank {
         accounts = getAccountsFromFile();
     }
 
-    public Account getAccount(int number) {
+    public Account getAccountOfNumber(int number) {
         for (int i = 0; i < accounts.size(); i++) {
             if (number == accounts.get(i).getNumber()) {
                 return accounts.get(i);
@@ -23,29 +23,25 @@ public class Bank {
         return null;
     }
 
-    // Gets the number of accounts stored in the file. Returns -1 for error
-    private int getAccountFileLength() {
-        int i = 0;
-
-        try {
-            File file = new File(accountFile);
-            if (file.createNewFile()) {
-                return 0;
-            } else {
-                Scanner scanner = new Scanner(file);
-
-                while (scanner.hasNextLine()) {
-                    scanner.nextLine();
-                    i++;
-                }
-
-                scanner.close();
-                return i;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Account getAccountOfIndex(int index) {
+        if (index >= 0 && index < accounts.size()) {
+            return accounts.get(index);
         }
-        return -1;
+        return null;
+    }
+
+    public int getNumberOfAccounts() {
+        return accounts.size();
+    }
+
+    public double getTotalBalance() {
+        double total = 0;
+
+        for (int i = 0; i < getNumberOfAccounts(); i++) {
+            total += getAccountOfIndex(i).getBalance();
+        }
+
+        return total;
     }
 
     // Reads the account file and returns an array of accounts
@@ -102,17 +98,5 @@ public class Bank {
         }
 
         return result;
-    }
-
-    public static void main(String[] args) {
-        Bank bank = new Bank("accounts.txt");
-        System.out.println(bank);
-
-        bank.getAccount(14).depositFunds(4284.68);
-        bank.getAccount(15).depositFunds(20.41);
-        bank.getAccount(15).withdrawFunds(400);
-        bank.getAccount(15).withdrawFunds(12);
-
-        System.out.println(bank);
     }
 }

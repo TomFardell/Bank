@@ -47,13 +47,21 @@ public abstract class Screen {
     }
 
     protected void setLabelAppearance1(JLabel label) {
+        label.setOpaque(false);
         setComponentAppearance(label, DEFAULT_LABEL_FONT, COLOR_PALETTE[3], TRANSPARENT,
                 false);
     }
 
     protected void setLabelAppearance2(JLabel label) {
+        label.setOpaque(false);
         setComponentAppearance(label, DEFAULT_LABEL_FONT, COLOR_PALETTE[2], TRANSPARENT,
                 false);
+    }
+
+    protected void setLabelAppearance3(JLabel label) {
+        label.setOpaque(true);
+        setComponentAppearance(label, DEFAULT_LABEL_FONT, COLOR_PALETTE[3], COLOR_PALETTE[1],
+                true);
     }
 
     protected void setTextFieldAppearance1(JTextField field) {
@@ -84,13 +92,16 @@ public abstract class Screen {
         return;
     }
 
-    // Given a component and x, y and width, places the component on the
-    // GridBagLayout at this position
-    protected void addGB(Component component, int x, int y, int width) {
+    protected void addGB(Component component, int x, int y, int width, int height) {
         gbc.gridx = x;
         gbc.gridy = y;
         gbc.gridwidth = width;
+        gbc.gridheight = height;
         panel.add(component, gbc);
+    }
+
+    protected void addGB(Component component, int x, int y, int width) {
+        addGB(component, x, y, width, 1);
     }
 
     // Default width of 1
