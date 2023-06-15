@@ -1,26 +1,24 @@
 package screens;
 
 import main.*;
-import javax.swing.*;
-import java.awt.*;
 
-public class WithdrawScreen extends Screen {
+public class WithdrawScreen extends MoneyScreen {
 
     public WithdrawScreen(GUI gui) {
         super(gui);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
-    protected void setupComponents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setupComponents'");
+    protected String getActionText() {
+        return "Withdraw";
     }
 
     @Override
-    protected void setupPanel() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setupPanel'");
+    protected void processAmount(double amount) {
+        if (gui.getSelectedAccount().withdrawFunds(amount)) {
+            badInputLabel.setText("Transaction processed");
+        } else {
+            badInputLabel.setText("Transaciton unsuccessful");
+        }
     }
-
 }

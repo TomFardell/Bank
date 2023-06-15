@@ -54,10 +54,14 @@ public class GUI {
         selectionScreen = new SelectionScreen(this);
         accountLoginScreen = new AccountLoginScreen(this);
         accountScreen = new AccountScreen(this);
+        withdrawScreen = new WithdrawScreen(this);
+        depositScreen = new DepositScreen(this);
 
         cardPanel.add("selection", selectionScreen.getPanel());
         cardPanel.add("accountLogin", accountLoginScreen.getPanel());
         cardPanel.add("account", accountScreen.getPanel());
+        cardPanel.add("withdraw", withdrawScreen.getPanel());
+        cardPanel.add("deposit", depositScreen.getPanel());
     }
 
     // Shows the Screen with the inputted name
@@ -68,6 +72,8 @@ public class GUI {
         selectionScreen.refreshText();
         accountLoginScreen.refreshText();
         accountScreen.refreshText();
+        withdrawScreen.refreshText();
+        depositScreen.refreshText();
     }
 
     public static void main(String[] args) {

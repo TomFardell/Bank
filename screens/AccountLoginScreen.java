@@ -59,7 +59,6 @@ public class AccountLoginScreen extends Screen {
 
         setButtonAppearance1(loginButton);
         setButtonAppearance1(backButton);
-
     }
 
     @Override

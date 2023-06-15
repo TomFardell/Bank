@@ -1,26 +1,24 @@
 package screens;
 
 import main.*;
-import javax.swing.*;
-import java.awt.*;
 
-public class DepositScreen extends Screen {
+public class DepositScreen extends MoneyScreen {
 
     public DepositScreen(GUI gui) {
         super(gui);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
-    protected void setupComponents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setupComponents'");
+    protected String getActionText() {
+        return "Deposit";
     }
 
     @Override
-    protected void setupPanel() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setupPanel'");
+    protected void processAmount(double amount) {
+        if (gui.getSelectedAccount().depositFunds(amount)) {
+            badInputLabel.setText("Transaction processed");
+        } else {
+            badInputLabel.setText("Transaction unsuccessful");
+        }
     }
-
 }
