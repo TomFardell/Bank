@@ -3,6 +3,7 @@ package main;
 import screens.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class GUI {
 
@@ -29,6 +30,15 @@ public class GUI {
         frame.setTitle("Bank");
         frame.setPreferredSize(new Dimension(600, 400));
         frame.setLocation(400, 200);
+
+        // Saves the accounts when the window closes
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                bank.writeAccountsToFile();
+                System.exit(0);
+            }
+        });
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
