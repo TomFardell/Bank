@@ -29,8 +29,6 @@ public class AccountScreen extends Screen {
         depositButton = new JButton("Deposit Funds");
         withdrawButton = new JButton("Withdraw Funds");
 
-        refreshTextFields();
-
         backButton.addActionListener(e -> backButtonPressed());
         depositButton.addActionListener(e -> depositButtonPressed());
         withdrawButton.addActionListener(e -> withdrawButtonPressed());
@@ -73,7 +71,8 @@ public class AccountScreen extends Screen {
         setButtonAppearance1(depositButton);
     }
 
-    public void refreshTextFields() {
+    @Override
+    public void refreshText() {
         numberField.setText(gui.getSelectedAccount().getNumber() + "");
         nameField.setText(gui.getSelectedAccount().getFullName());
         balanceField.setText(gui.getSelectedAccount().getFormattedBalance());

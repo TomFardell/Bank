@@ -45,9 +45,6 @@ public class GUI {
 
     public void setSelectedAccount(Account account) {
         selectedAccount = account;
-
-        AccountScreen as = (AccountScreen) accountScreen;
-        as.refreshTextFields();
     }
 
     // Creates a card layout containing the panel from each type of screen
@@ -67,6 +64,10 @@ public class GUI {
     public void showScreen(String name) {
         CardLayout cl = (CardLayout) cardPanel.getLayout();
         cl.show(cardPanel, name);
+
+        selectionScreen.refreshText();
+        accountLoginScreen.refreshText();
+        accountScreen.refreshText();
     }
 
     public static void main(String[] args) {

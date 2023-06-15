@@ -79,6 +79,11 @@ public abstract class Screen {
         panel.setBackground(COLOR_PALETTE[0]);
     }
 
+    // Refreshes text fields. Default behaviour for a Screen with no text fields
+    public void refreshText() {
+        return;
+    }
+
     // Given a component and x, y and width, places the component on the
     // GridBagLayout at this position
     protected void addGB(Component component, int x, int y, int width) {

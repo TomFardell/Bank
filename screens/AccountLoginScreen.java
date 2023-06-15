@@ -62,6 +62,13 @@ public class AccountLoginScreen extends Screen {
 
     }
 
+    @Override
+    public void refreshText() {
+        badLoginLabel.setText("");
+        numberField.setText("");
+        passwordField.setText("");
+    }
+
     private void loginButtonPressed() {
         int number;
 
