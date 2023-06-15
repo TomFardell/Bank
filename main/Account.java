@@ -42,7 +42,12 @@ public class Account {
     }
 
     public String toString() {
-        return String.format("%d: %s %s, £%.2f, %s", number, forename, surname, balance, password);
+        return String.format("%d: %s %s, %s, %s", number, forename, surname,
+                getFormattedBalance(), password);
+    }
+
+    public String getFormattedBalance() {
+        return String.format("£%.2f", balance);
     }
 
     public String getForename() {

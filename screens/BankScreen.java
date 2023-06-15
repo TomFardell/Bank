@@ -22,5 +22,4 @@ public class BankScreen extends Screen {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setupPanel'");
     }
-
 }

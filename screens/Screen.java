@@ -19,6 +19,7 @@ public abstract class Screen {
 
     protected GUI gui;
     protected JPanel panel;
+    protected GridBagConstraints gbc;
 
     public Screen(GUI gui) {
         this.gui = gui;
@@ -31,7 +32,7 @@ public abstract class Screen {
         return panel;
     }
 
-    protected void setComponentAppearance(JComponent component, Font font, Color textColor,
+    protected void setComponentAppearance(Component component, Font font, Color textColor,
             Color backgroundColor, boolean focusable) {
         component.setFont(font);
         component.setForeground(textColor);
@@ -50,10 +51,21 @@ public abstract class Screen {
                 false);
     }
 
+    protected void setLabelAppearance2(JLabel label) {
+        setComponentAppearance(label, DEFAULT_LABEL_FONT, COLOR_PALETTE[2], TRANSPARENT,
+                false);
+    }
+
     protected void setTextFieldAppearance1(JTextField field) {
         field.setBorder(BorderFactory.createEmptyBorder());
         setComponentAppearance(field, DEFAULT_TEXT_FIELD_FONT, COLOR_PALETTE[3],
                 COLOR_PALETTE[1], true);
+    }
+
+    protected void setTextFieldAppearance2(JTextField field) {
+        field.setBorder(BorderFactory.createEmptyBorder());
+        setComponentAppearance(field, DEFAULT_TEXT_FIELD_FONT, COLOR_PALETTE[3],
+                COLOR_PALETTE[1], false);
     }
 
     // Sets up buttons and other components. Should set up their appearance and any
@@ -65,5 +77,19 @@ public abstract class Screen {
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel.setBackground(COLOR_PALETTE[0]);
+    }
+
+    // Given a component and x, y and width, places the component on the
+    // GridBagLayout at this position
+    protected void addGB(Component component, int x, int y, int width) {
+        gbc.gridx = x;
+        gbc.gridy = y;
+        gbc.gridwidth = width;
+        panel.add(component, gbc);
+    }
+
+    // Default width of 1
+    protected void addGB(Component component, int x, int y) {
+        addGB(component, x, y, 1);
     }
 }

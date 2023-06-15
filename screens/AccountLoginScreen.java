@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class AccountLoginScreen extends Screen {
 
-    private GridBagConstraints gbc;
     private JLabel numberLabel, passwordLabel, badLoginLabel;
     private JTextField numberField, passwordField;
     private JButton loginButton, backButton;
@@ -53,7 +52,7 @@ public class AccountLoginScreen extends Screen {
 
         setLabelAppearance1(numberLabel);
         setLabelAppearance1(passwordLabel);
-        setLabelAppearance1(badLoginLabel);
+        setLabelAppearance2(badLoginLabel);
 
         setTextFieldAppearance1(numberField);
         setTextFieldAppearance1(passwordField);
@@ -61,20 +60,6 @@ public class AccountLoginScreen extends Screen {
         setButtonAppearance1(loginButton);
         setButtonAppearance1(backButton);
 
-    }
-
-    // Given a component and x, y and width, places the component on the
-    // GridBagLayout at this position
-    private void addGB(Component component, int x, int y, int width) {
-        gbc.gridx = x;
-        gbc.gridy = y;
-        gbc.gridwidth = width;
-        panel.add(component, gbc);
-    }
-
-    // Default width of 1
-    private void addGB(Component component, int x, int y) {
-        addGB(component, x, y, 1);
     }
 
     private void loginButtonPressed() {
