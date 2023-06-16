@@ -39,7 +39,8 @@ public class Account {
     // Returns the details of the account as a CSV String in the form:
     // number,forename,surname,balance
     public String getAsCSVString() {
-        return number + "," + forename + "," + surname + "," + balance + "," + password;
+        return String.format("%d,%s,%s,%.2f,%s", number, forename, surname, balance,
+                password);
     }
 
     public String toString() {

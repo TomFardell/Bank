@@ -23,8 +23,8 @@ public class BankScreen extends Screen {
 
     @Override
     protected void setupComponents() {
-        accountsLabel = new JLabel("Accounts:");
-        detailsLabel = new JLabel("Details:");
+        accountsLabel = new JLabel("Accounts");
+        detailsLabel = new JLabel("Details");
         numberOfAccountsLabel = new JLabel("Number of accounts:");
         totalBalanceLabel = new JLabel("Total balance:");
         numberOfAccountsValue = new JLabel();
@@ -59,16 +59,25 @@ public class BankScreen extends Screen {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 4, 0, 4);
 
+        // Labels for titles of columns in the data pane
+        JLabel[] titleLabels = new JLabel[] { new JLabel("Number"), new JLabel("Name"),
+                new JLabel("Balance"), new JLabel("Password") };
+
+        // Places the title labels
+        for (int i = 0; i < titleLabels.length; i++) {
+            addGB(titleLabels[i], i, 0, 1, 1, scrollPanePanel);
+
+            setLabelAppearance3(titleLabels[i]);
+        }
+
         // Places the account data text fields on the scroll pane
         for (int i = 0; i < accountDataEntries.size(); i++) {
             for (int j = 0; j < Account.NUMBER_OF_FIELDS; j++) {
                 JLabel entry = accountDataEntries.get(i)[j];
 
-                gbc.gridx = j;
-                gbc.gridy = i;
-                scrollPanePanel.add(entry, gbc);
+                addGB(entry, j, i + 1, 1, 1, scrollPanePanel);
 
-                setLabelAppearance3(entry);
+                setLabelAppearance6(entry);
             }
         }
 
@@ -94,11 +103,10 @@ public class BankScreen extends Screen {
 
         addGB(backButton, 0, 0);
 
-        setLabelAppearance1(accountsLabel);
-        setLabelAppearance1(detailsLabel);
-        setLabelAppearance1(numberOfAccountsLabel);
-        setLabelAppearance1(totalBalanceLabel);
-
+        setLabelAppearance4(accountsLabel);
+        setLabelAppearance4(detailsLabel);
+        setLabelAppearance5(numberOfAccountsLabel);
+        setLabelAppearance5(totalBalanceLabel);
         setLabelAppearance3(numberOfAccountsValue);
         setLabelAppearance3(totalBalanceValue);
 
