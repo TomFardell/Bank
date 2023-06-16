@@ -20,16 +20,22 @@ public class SelectionScreen extends Screen {
         accountButton.addActionListener(e -> accountButtonPressed());
         bankButton.addActionListener(e -> bankButtonPressed());
 
-        setButtonAppearance1(accountButton);
-        setButtonAppearance1(bankButton);
+        setButtonAppearance3(accountButton);
+        setButtonAppearance3(bankButton);
     }
 
     @Override
     protected void setupPanel() {
         super.setupPanel();
-        panel.setLayout(new GridLayout(2, 1, 0, 10));
-        panel.add(accountButton);
-        panel.add(bankButton);
+        panel.setLayout(new GridBagLayout());
+
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        addGB(accountButton, 0, 0);
+        addGB(bankButton, 0, 1);
     }
 
     private void accountButtonPressed() {

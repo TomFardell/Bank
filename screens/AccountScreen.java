@@ -31,32 +31,6 @@ public class AccountScreen extends Screen {
         backButton.addActionListener(e -> backButtonPressed());
         depositButton.addActionListener(e -> depositButtonPressed());
         withdrawButton.addActionListener(e -> withdrawButtonPressed());
-    }
-
-    @Override
-    protected void setupPanel() {
-        super.setupPanel();
-        panel.setLayout(new GridBagLayout());
-
-        gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(2, 5, 2, 5);
-
-        addGB(detailsLabel, 1, 1);
-        addGB(numberLabel, 1, 2);
-        addGB(nameLabel, 1, 3);
-        addGB(balanceLabel, 1, 4);
-        addGB(numberValue, 2, 2);
-        addGB(nameValue, 2, 3);
-        addGB(balanceValue, 2, 4);
-
-        addGB(backButton, 0, 0);
-
-        addGB(Box.createVerticalStrut(8), 0, 5);
-
-        addGB(withdrawButton, 1, 6);
-        addGB(depositButton, 2, 6);
 
         setLabelAppearance4(detailsLabel);
         setLabelAppearance5(numberLabel);
@@ -69,6 +43,32 @@ public class AccountScreen extends Screen {
         setButtonAppearance1(backButton);
         setButtonAppearance2(withdrawButton);
         setButtonAppearance2(depositButton);
+    }
+
+    @Override
+    protected void setupPanel() {
+        super.setupPanel();
+        panel.setLayout(new GridBagLayout());
+
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(2, 5, 2, 5);
+
+        addGB(Box.createVerticalStrut(8), 0, 5);
+
+        addGB(detailsLabel, 1, 1);
+        addGB(numberLabel, 1, 2);
+        addGB(nameLabel, 1, 3);
+        addGB(balanceLabel, 1, 4);
+        addGB(numberValue, 2, 2);
+        addGB(nameValue, 2, 3);
+        addGB(balanceValue, 2, 4);
+
+        addGB(backButton, 0, 0);
+
+        addGB(withdrawButton, 1, 6);
+        addGB(depositButton, 2, 6);
     }
 
     @Override

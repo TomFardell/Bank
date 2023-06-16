@@ -28,6 +28,16 @@ public class AccountLoginScreen extends Screen {
 
         loginButton.addActionListener(e -> loginButtonPressed());
         backButton.addActionListener(e -> backButtonPressed());
+
+        setLabelAppearance5(numberLabel);
+        setLabelAppearance5(passwordLabel);
+        setLabelAppearance2(badLoginLabel);
+
+        setTextFieldAppearance1(numberField);
+        setTextFieldAppearance1(passwordField);
+
+        setButtonAppearance1(loginButton);
+        setButtonAppearance1(backButton);
     }
 
     @Override
@@ -40,6 +50,8 @@ public class AccountLoginScreen extends Screen {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(4, 5, 4, 5);
 
+        addGB(Box.createVerticalStrut(8), 0, 4);
+
         addGB(numberLabel, 1, 2);
         addGB(passwordLabel, 1, 3);
 
@@ -47,20 +59,8 @@ public class AccountLoginScreen extends Screen {
         addGB(numberField, 2, 2);
         addGB(passwordField, 2, 3);
 
-        addGB(Box.createVerticalStrut(8), 0, 4);
-
         addGB(loginButton, 1, 5, 2);
         addGB(backButton, 0, 0);
-
-        setLabelAppearance5(numberLabel);
-        setLabelAppearance5(passwordLabel);
-        setLabelAppearance2(badLoginLabel);
-
-        setTextFieldAppearance1(numberField);
-        setTextFieldAppearance1(passwordField);
-
-        setButtonAppearance1(loginButton);
-        setButtonAppearance1(backButton);
     }
 
     @Override

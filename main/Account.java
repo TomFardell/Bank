@@ -6,7 +6,10 @@ import java.util.Scanner;
 public class Account {
 
     public static final int NUMBER_OF_FIELDS = 4;
+
     private static final String ACCOUNT_NUMBER_FILE_NAME = "number.txt";
+
+    private static boolean showPasswordsInDisplay = false;
 
     private int number;
     private String forename;
@@ -37,7 +40,7 @@ public class Account {
     }
 
     // Returns the details of the account as a CSV String in the form:
-    // number,forename,surname,balance
+    // number,forename,surname,balance,password
     public String getAsCSVString() {
         return String.format("%d,%s,%s,%.2f,%s", number, forename, surname, balance,
                 password);
@@ -64,7 +67,10 @@ public class Account {
             return getFormattedBalance();
         }
         if (code == 3) {
-            return password;
+            if (showPasswordsInDisplay) {
+                return password;
+            }
+            return "********";
         }
         return "";
     }
@@ -99,6 +105,10 @@ public class Account {
 
     public double getBalance() {
         return balance;
+    }
+
+    public static void togglePasswordsInDisplay() {
+        showPasswordsInDisplay = !showPasswordsInDisplay;
     }
 
     // Adds the amount to the balance. Returns whether the transaciton is successful
@@ -150,12 +160,5 @@ public class Account {
             e.printStackTrace();
         }
         return num;
-    }
-
-    public static void main(String[] args) {
-        Account account1 = new Account("Tom", "Fardell", "gaypenis");
-        Account account2 = new Account("Matthew", "Hilton", "sexwithmen");
-        System.out.println(account1.number);
-        System.out.println(account2.number);
     }
 }

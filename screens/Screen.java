@@ -16,9 +16,10 @@ public abstract class Screen {
 
     protected static final Font DEFAULT_BUTTON_FONT = new Font("Helvetica", Font.BOLD, 20);
     protected static final Font SMALLER_BUTTON_FONT = new Font("Helvetica", Font.BOLD, 17);
+    protected static final Font TITLE_BUTTON_FONT = new Font("Helvetica", Font.BOLD, 30);
     protected static final Font DEFAULT_LABEL_FONT = new Font("Helvetica", Font.BOLD, 15);
     protected static final Font PLAIN_LABEL_FONT = new Font("Helvetica", Font.PLAIN, 15);
-    protected static final Font DEFAULT_TITLE_FONT = new Font("Helvetica", Font.BOLD, 25);
+    protected static final Font TITLE_LABEL_FONT = new Font("Helvetica", Font.BOLD, 25);
     protected static final Font DEFAULT_TEXT_FIELD_FONT = new Font("Helvetica", Font.BOLD, 15);
 
     protected GUI gui;
@@ -62,6 +63,13 @@ public abstract class Screen {
         widenComponentBackground(button);
     }
 
+    protected void setButtonAppearance3(JButton button) {
+        setComponentAppearance(button, TITLE_BUTTON_FONT, COLOR_PALETTE[3], COLOR_PALETTE[1],
+                false);
+        button.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10,
+                button.getBackground()));
+    }
+
     protected void setLabelAppearance1(JLabel label) {
         label.setOpaque(false);
         setComponentAppearance(label, DEFAULT_LABEL_FONT, COLOR_PALETTE[3], TRANSPARENT,
@@ -83,7 +91,7 @@ public abstract class Screen {
 
     protected void setLabelAppearance4(JLabel label) {
         label.setOpaque(false);
-        setComponentAppearance(label, DEFAULT_TITLE_FONT, COLOR_PALETTE[3], TRANSPARENT,
+        setComponentAppearance(label, TITLE_LABEL_FONT, COLOR_PALETTE[3], TRANSPARENT,
                 false);
     }
 

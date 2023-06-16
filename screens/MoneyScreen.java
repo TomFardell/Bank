@@ -28,6 +28,14 @@ public abstract class MoneyScreen extends Screen {
 
         backButton.addActionListener(e -> backButtonPressed());
         actionButton.addActionListener(e -> actionButtonPressed());
+
+        setLabelAppearance5(currencyLabel);
+        setLabelAppearance2(badInputLabel);
+
+        setTextFieldAppearance1(amountField);
+
+        setButtonAppearance1(backButton);
+        setButtonAppearance2(actionButton);
     }
 
     @Override
@@ -47,14 +55,6 @@ public abstract class MoneyScreen extends Screen {
 
         addGB(backButton, 0, 0);
         addGB(actionButton, 1, 3, 2);
-
-        setLabelAppearance5(currencyLabel);
-        setLabelAppearance2(badInputLabel);
-
-        setTextFieldAppearance1(amountField);
-
-        setButtonAppearance1(backButton);
-        setButtonAppearance2(actionButton);
     }
 
     @Override

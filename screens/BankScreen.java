@@ -17,7 +17,7 @@ public class BankScreen extends Screen {
     private JLabel accountsLabel, detailsLabel, numberOfAccountsLabel, totalBalanceLabel,
             numberOfAccountsValue, totalBalanceValue;
     private ArrayList<JLabel[]> accountDataEntries;
-    private JButton backButton;
+    private JButton backButton, togglePasswordsbutton;
 
     public BankScreen(GUI gui) {
         super(gui);
@@ -42,8 +42,20 @@ public class BankScreen extends Screen {
         }
 
         backButton = new JButton("Back");
+        togglePasswordsbutton = new JButton("Toggle Passwords");
 
         backButton.addActionListener(e -> backButtonPressed());
+        togglePasswordsbutton.addActionListener(e -> togglePasswordsButtonPressed());
+
+        setLabelAppearance4(accountsLabel);
+        setLabelAppearance4(detailsLabel);
+        setLabelAppearance5(numberOfAccountsLabel);
+        setLabelAppearance5(totalBalanceLabel);
+        setLabelAppearance3(numberOfAccountsValue);
+        setLabelAppearance3(totalBalanceValue);
+
+        setButtonAppearance1(backButton);
+        setButtonAppearance2(togglePasswordsbutton);
     }
 
     @Override
@@ -58,7 +70,9 @@ public class BankScreen extends Screen {
         // GridBagConstraints for data pane
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
         gbc.insets = new Insets(0, 4, 0, 4);
 
         // Labels for titles of columns in the data pane
@@ -67,9 +81,16 @@ public class BankScreen extends Screen {
 
         // Places the title labels
         for (int i = 0; i < titleLabels.length; i++) {
-            addGB(titleLabels[i], i, 0, 1, 1, scrollPanePanel);
-
             setLabelAppearance3(titleLabels[i]);
+
+            // Anchors the grid to the top left
+            if (i == titleLabels.length - 1) {
+                gbc.weightx = 1;
+            } else {
+                gbc.weightx = 0;
+
+            }
+            addGB(titleLabels[i], i, 0, 1, 1, scrollPanePanel);
         }
 
         // Places the account data text fields on the scroll pane
@@ -77,9 +98,21 @@ public class BankScreen extends Screen {
             for (int j = 0; j < Account.NUMBER_OF_FIELDS; j++) {
                 JLabel entry = accountDataEntries.get(i)[j];
 
-                addGB(entry, j, i + 1, 1, 1, scrollPanePanel);
-
                 setLabelAppearance6(entry);
+
+                // Anchors the grid to the top left
+                if (i == accountDataEntries.size() - 1) {
+                    gbc.weighty = 1;
+                } else {
+                    gbc.weighty = 0;
+                }
+                if (j == Account.NUMBER_OF_FIELDS - 1) {
+                    gbc.weightx = 1;
+                } else {
+                    gbc.weightx = 0;
+                }
+
+                addGB(entry, j, i + 1, 1, 1, scrollPanePanel);
             }
         }
 
@@ -95,10 +128,14 @@ public class BankScreen extends Screen {
         // GridBagConstraints for whole screen
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
         gbc.insets = new Insets(2, 10, 2, 10);
 
+        addGB(Box.createHorizontalStrut(SCROLL_PANE_DIMENSION.width - 300), 2, 0);
+
         addGB(accountsLabel, 1, 1);
-        addGB(detailsLabel, 5, 1);
+        addGB(detailsLabel, Account.NUMBER_OF_FIELDS + 1, 1);
         addGB(numberOfAccountsLabel, Account.NUMBER_OF_FIELDS + 1, 2);
         addGB(totalBalanceLabel, Account.NUMBER_OF_FIELDS + 1, 3);
 
@@ -108,15 +145,7 @@ public class BankScreen extends Screen {
         addGB(totalBalanceValue, Account.NUMBER_OF_FIELDS + 2, 3);
 
         addGB(backButton, 0, 0);
-
-        setLabelAppearance4(accountsLabel);
-        setLabelAppearance4(detailsLabel);
-        setLabelAppearance5(numberOfAccountsLabel);
-        setLabelAppearance5(totalBalanceLabel);
-        setLabelAppearance3(numberOfAccountsValue);
-        setLabelAppearance3(totalBalanceValue);
-
-        setButtonAppearance1(backButton);
+        addGB(togglePasswordsbutton, Account.NUMBER_OF_FIELDS, 0);
     }
 
     @Override
@@ -140,5 +169,10 @@ public class BankScreen extends Screen {
 
     private void backButtonPressed() {
         gui.showScreen("selection");
+    }
+
+    private void togglePasswordsButtonPressed() {
+        Account.togglePasswordsInDisplay();
+        refreshText();
     }
 }
