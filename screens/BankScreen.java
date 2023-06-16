@@ -2,12 +2,14 @@ package screens;
 
 import main.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 import java.util.*;
 
 public class BankScreen extends Screen {
 
     private static final Dimension SCROLL_PANE_DIMENSION = new Dimension(450, 150);
+    private static final int MAX_DISPLAY_LENGTH = 17;
 
     private JPanel scrollPanePanel;
     private JScrollPane scrollPane;
@@ -85,6 +87,10 @@ public class BankScreen extends Screen {
         scrollPane.setMinimumSize(SCROLL_PANE_DIMENSION);
         scrollPane.setMaximumSize(SCROLL_PANE_DIMENSION);
         scrollPane.setPreferredSize(SCROLL_PANE_DIMENSION);
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        setScrollBarAppearance1(scrollPane.getVerticalScrollBar());
 
         // GridBagConstraints for whole screen
         gbc.fill = GridBagConstraints.BOTH;
@@ -118,8 +124,12 @@ public class BankScreen extends Screen {
         // Refreshes the text of the account data fields
         for (int i = 0; i < accountDataEntries.size(); i++) {
             for (int j = 0; j < Account.NUMBER_OF_FIELDS; j++) {
-                accountDataEntries.get(i)[j].setText(
-                        gui.getBank().getAccountOfIndex(i).getTextFromCode(j));
+                // Stops entries from being too large requiring a horizontal scroll
+                String text = gui.getBank().getAccountOfIndex(i).getTextFromCode(j);
+                if (text.length() > MAX_DISPLAY_LENGTH) {
+                    text = text.substring(0, MAX_DISPLAY_LENGTH - 3) + "...";
+                }
+                accountDataEntries.get(i)[j].setText(text);
             }
         }
 

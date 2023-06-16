@@ -1,17 +1,18 @@
 package screens;
 
 import main.*;
+import customcomponents.*;
 import javax.swing.*;
 import java.awt.*;
 
 public abstract class Screen {
-    protected static final Color[] COLOR_PALETTE = new Color[] {
+    public static final Color[] COLOR_PALETTE = new Color[] {
             new Color(237, 241, 214),
             new Color(157, 192, 139),
             new Color(96, 153, 102),
             new Color(64, 81, 59)
     };
-    protected static final Color TRANSPARENT = new Color(0, 0, 0, 0);
+    public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 
     protected static final Font DEFAULT_BUTTON_FONT = new Font("Helvetica", Font.BOLD, 20);
     protected static final Font SMALLER_BUTTON_FONT = new Font("Helvetica", Font.BOLD, 17);
@@ -110,6 +111,10 @@ public abstract class Screen {
         setComponentAppearance(field, DEFAULT_TEXT_FIELD_FONT, COLOR_PALETTE[3],
                 COLOR_PALETTE[1], false);
         widenComponentBackground(field);
+    }
+
+    protected void setScrollBarAppearance1(JScrollBar scrollBar) {
+        scrollBar.setUI(new BankScrollBarUI());
     }
 
     // Sets up buttons and other components. Should set up their appearance and any
