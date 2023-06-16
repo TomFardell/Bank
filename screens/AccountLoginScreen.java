@@ -18,7 +18,7 @@ public class AccountLoginScreen extends Screen {
     protected void setupComponents() {
         numberLabel = new JLabel("Number:");
         passwordLabel = new JLabel("Password:");
-        badLoginLabel = new JLabel("");
+        badLoginLabel = new JLabel("", SwingConstants.CENTER);
 
         numberField = new JTextField(10);
         passwordField = new JPasswordField(10);
@@ -46,7 +46,7 @@ public class AccountLoginScreen extends Screen {
         panel.setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(4, 5, 4, 5);
 
@@ -65,7 +65,7 @@ public class AccountLoginScreen extends Screen {
 
     @Override
     public void refreshText() {
-        badLoginLabel.setText("");
+        badLoginLabel.setText(" ");
         numberField.setText("");
         passwordField.setText("");
     }

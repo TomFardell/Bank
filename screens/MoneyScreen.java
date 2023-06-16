@@ -19,9 +19,9 @@ public abstract class MoneyScreen extends Screen {
     @Override
     protected void setupComponents() {
         currencyLabel = new JLabel("£");
-        badInputLabel = new JLabel("");
+        badInputLabel = new JLabel("", SwingConstants.CENTER);
 
-        amountField = new JTextField(10);
+        amountField = new JTextField(16);
 
         backButton = new JButton("Back");
         actionButton = new JButton(getActionText());
@@ -46,7 +46,7 @@ public abstract class MoneyScreen extends Screen {
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(10, 2, 10, 2);
 
         addGB(currencyLabel, 1, 2);
         addGB(badInputLabel, 1, 1, 2);
@@ -59,7 +59,7 @@ public abstract class MoneyScreen extends Screen {
 
     @Override
     public void refreshText() {
-        badInputLabel.setText("");
+        badInputLabel.setText(" ");
         amountField.setText("");
     }
 
