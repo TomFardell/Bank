@@ -171,7 +171,7 @@ public class BankScreen extends Screen {
 
         numberOfAccountsValue.setText(gui.getBank().getNumberOfAccounts() + "");
         totalBalanceValue.setText(String.format(
-                "£%.2f", gui.getBank().getTotalBalance()));
+                "£%,.2f", gui.getBank().getTotalBalance()));
     }
 
     private void backButtonPressed() {

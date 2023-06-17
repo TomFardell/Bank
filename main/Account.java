@@ -52,7 +52,7 @@ public class Account {
     }
 
     public String getFormattedBalance() {
-        return String.format("£%.2f", balance);
+        return String.format("£%,.2f", balance);
     }
 
     // Method to help display information about accounts
