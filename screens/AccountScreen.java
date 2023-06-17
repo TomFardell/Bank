@@ -73,6 +73,8 @@ public class AccountScreen extends Screen {
 
     @Override
     public void refreshText() {
+        super.refreshText();
+
         numberValue.setText(gui.getSelectedAccount().getNumber() + "");
         nameValue.setText(gui.getSelectedAccount().getFullName());
         balanceValue.setText(gui.getSelectedAccount().getFormattedBalance());

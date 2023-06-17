@@ -1,4 +1,4 @@
-14,Thomas,Fardell,5485.16,coding
+14,Thomas,Fardell,25365.16,coding
 15,Matthew,Hilton,513.34,gym
 16,Josh,Saunderson,20.00,car
 17,Robbie,Wilkinson,4192.00,liverpool
@@ -7,3 +7,6 @@
 20,Carole,Fardell,28921.34,password
 21,Ryan,Jewers,530.00,mesocycle-A-microcycle-B
 22,Jordan,Peters,182093.23,optimal
+23,Greg,Ching,0.00,maths
+24,Max,Howlett,0.00,guitar
+26,Oliver,Brown,1233.56,STEM

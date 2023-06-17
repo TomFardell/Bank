@@ -18,7 +18,7 @@ public class AccountLoginScreen extends Screen {
     protected void setupComponents() {
         numberLabel = new JLabel("Number:");
         passwordLabel = new JLabel("Password:");
-        badLoginLabel = new JLabel("", SwingConstants.CENTER);
+        badLoginLabel = new JLabel();
 
         numberField = new JTextField(10);
         passwordField = new JPasswordField(10);
@@ -54,8 +54,8 @@ public class AccountLoginScreen extends Screen {
 
         addGB(numberLabel, 1, 2);
         addGB(passwordLabel, 1, 3);
-
         addGB(badLoginLabel, 1, 1, 2);
+
         addGB(numberField, 2, 2);
         addGB(passwordField, 2, 3);
 

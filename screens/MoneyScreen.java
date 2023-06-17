@@ -19,7 +19,7 @@ public abstract class MoneyScreen extends Screen {
     @Override
     protected void setupComponents() {
         currencyLabel = new JLabel("£");
-        badInputLabel = new JLabel("", SwingConstants.CENTER);
+        badInputLabel = new JLabel();
 
         amountField = new JTextField(16);
 
@@ -59,6 +59,8 @@ public abstract class MoneyScreen extends Screen {
 
     @Override
     public void refreshText() {
+        super.refreshText();
+
         badInputLabel.setText(" ");
         amountField.setText("");
     }

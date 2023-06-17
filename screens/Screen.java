@@ -37,6 +37,22 @@ public abstract class Screen {
         return panel;
     }
 
+    // Sets up buttons and other components. Should set up their appearance and any
+    // functionality such as ActionListeners
+    protected abstract void setupComponents();
+
+    // Sets up the panel. Should arrange the components on the panel
+    protected void setupPanel() {
+        panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        panel.setBackground(COLOR_PALETTE[0]);
+    }
+
+    // Refreshes text fields. Default behaviour for a Screen with no text fields
+    public void refreshText() {
+        return;
+    }
+
     // Needs to be called after setting the component's background color
     private void widenComponentBackground(JComponent component) {
         component.setBorder(BorderFactory.createMatteBorder(0, 4, 0, 4,
@@ -77,6 +93,7 @@ public abstract class Screen {
     }
 
     protected void setLabelAppearance2(JLabel label) {
+        label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setOpaque(false);
         setComponentAppearance(label, DEFAULT_LABEL_FONT, COLOR_PALETTE[2], TRANSPARENT,
                 false);
@@ -123,22 +140,6 @@ public abstract class Screen {
 
     protected void setScrollBarAppearance1(JScrollBar scrollBar) {
         scrollBar.setUI(new BankScrollBarUI());
-    }
-
-    // Sets up buttons and other components. Should set up their appearance and any
-    // functionality such as ActionListeners
-    protected abstract void setupComponents();
-
-    // Sets up the panel. Should arrange the components on the panel
-    protected void setupPanel() {
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panel.setBackground(COLOR_PALETTE[0]);
-    }
-
-    // Refreshes text fields. Default behaviour for a Screen with no text fields
-    public void refreshText() {
-        return;
     }
 
     protected void addGB(Component component, int x, int y, int width, int height, JPanel panel) {

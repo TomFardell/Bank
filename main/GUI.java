@@ -13,7 +13,7 @@ public class GUI {
     private JFrame frame;
     private JPanel cardPanel;
     private Screen selectionScreen, accountLoginScreen, accountScreen, depositScreen,
-            withdrawScreen, bankScreen;
+            withdrawScreen, bankScreen, addAccountScreen;
 
     public GUI(Bank bank) {
         this.bank = bank;
@@ -67,6 +67,7 @@ public class GUI {
         withdrawScreen = new WithdrawScreen(this);
         depositScreen = new DepositScreen(this);
         bankScreen = new BankScreen(this);
+        addAccountScreen = new AddAccountScreen(this);
 
         cardPanel.add("selection", selectionScreen.getPanel());
         cardPanel.add("accountLogin", accountLoginScreen.getPanel());
@@ -74,6 +75,7 @@ public class GUI {
         cardPanel.add("withdraw", withdrawScreen.getPanel());
         cardPanel.add("deposit", depositScreen.getPanel());
         cardPanel.add("bank", bankScreen.getPanel());
+        cardPanel.add("addAccount", addAccountScreen.getPanel());
     }
 
     // Shows the Screen with the inputted name
@@ -87,6 +89,12 @@ public class GUI {
         withdrawScreen.refreshText();
         depositScreen.refreshText();
         bankScreen.refreshText();
+        addAccountScreen.refreshText();
+    }
+
+    public void refreshBankScreen() {
+        bankScreen = new BankScreen(this);
+        cardPanel.add("bank", bankScreen.getPanel());
     }
 
     public static void main(String[] args) {

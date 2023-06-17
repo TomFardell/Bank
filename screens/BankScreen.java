@@ -17,7 +17,7 @@ public class BankScreen extends Screen {
     private JLabel accountsLabel, detailsLabel, numberOfAccountsLabel, totalBalanceLabel,
             numberOfAccountsValue, totalBalanceValue;
     private ArrayList<JLabel[]> accountDataEntries;
-    private JButton backButton, togglePasswordsbutton;
+    private JButton backButton, togglePasswordsButton, addAccountButton;
 
     public BankScreen(GUI gui) {
         super(gui);
@@ -42,10 +42,12 @@ public class BankScreen extends Screen {
         }
 
         backButton = new JButton("Back");
-        togglePasswordsbutton = new JButton("Toggle Passwords");
+        togglePasswordsButton = new JButton("Toggle Passwords");
+        addAccountButton = new JButton("Add Account");
 
         backButton.addActionListener(e -> backButtonPressed());
-        togglePasswordsbutton.addActionListener(e -> togglePasswordsButtonPressed());
+        togglePasswordsButton.addActionListener(e -> togglePasswordsButtonPressed());
+        addAccountButton.addActionListener(e -> addAccountButtonPressed());
 
         setLabelAppearance4(accountsLabel);
         setLabelAppearance4(detailsLabel);
@@ -55,7 +57,8 @@ public class BankScreen extends Screen {
         setLabelAppearance3(totalBalanceValue);
 
         setButtonAppearance1(backButton);
-        setButtonAppearance2(togglePasswordsbutton);
+        setButtonAppearance2(togglePasswordsButton);
+        setButtonAppearance2(addAccountButton);
     }
 
     @Override
@@ -133,6 +136,7 @@ public class BankScreen extends Screen {
         gbc.insets = new Insets(2, 10, 2, 10);
 
         addGB(Box.createHorizontalStrut(SCROLL_PANE_DIMENSION.width - 300), 2, 0);
+        addGB(Box.createVerticalStrut(8), Account.NUMBER_OF_FIELDS + 1, 4);
 
         addGB(accountsLabel, 1, 1);
         addGB(detailsLabel, Account.NUMBER_OF_FIELDS + 1, 1);
@@ -145,11 +149,14 @@ public class BankScreen extends Screen {
         addGB(totalBalanceValue, Account.NUMBER_OF_FIELDS + 2, 3);
 
         addGB(backButton, 0, 0);
-        addGB(togglePasswordsbutton, Account.NUMBER_OF_FIELDS, 0);
+        addGB(togglePasswordsButton, Account.NUMBER_OF_FIELDS, 0);
+        addGB(addAccountButton, Account.NUMBER_OF_FIELDS + 1, 5);
     }
 
     @Override
     public void refreshText() {
+        super.refreshText();
+
         // Refreshes the text of the account data fields
         for (int i = 0; i < accountDataEntries.size(); i++) {
             for (int j = 0; j < Account.NUMBER_OF_FIELDS; j++) {
@@ -174,5 +181,9 @@ public class BankScreen extends Screen {
     private void togglePasswordsButtonPressed() {
         Account.togglePasswordsInDisplay();
         refreshText();
+    }
+
+    private void addAccountButtonPressed() {
+        gui.showScreen("addAccount");
     }
 }

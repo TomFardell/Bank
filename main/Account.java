@@ -18,7 +18,7 @@ public class Account {
     private String password;
 
     public Account(String forename, String surname, String password, double balance) {
-        this.number = getNextNumber();
+        this.number = getNumberWithIncrement();
         this.forename = forename;
         this.surname = surname;
         this.password = password;
@@ -134,30 +134,41 @@ public class Account {
         return number;
     }
 
-    // Reads the account number from the file and increments it. Returns -1 for an
-    // error
-    private int getNextNumber() {
-        int num = -1;
+    // Reads the account number from the file, returning -1 for error
+    public static int readNextNumber() {
+        int number = -1;
 
-        // Reads the file, creating a new one if no such file exists
         try {
             File file = new File(ACCOUNT_NUMBER_FILE_NAME);
             if (file.createNewFile()) {
-                num = 0;
+                number = 0;
             } else {
                 Scanner scanner = new Scanner(file);
-                num = Integer.parseInt(scanner.nextLine());
+                number = Integer.parseInt(scanner.nextLine());
                 scanner.close();
             }
-
-            // Writes the incrememnted number to the file
-            PrintWriter writer = new PrintWriter(ACCOUNT_NUMBER_FILE_NAME);
-            writer.print(num + 1);
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return number;
+    }
+
+    // Reads the account number and writes the incremented value to the file,
+    // returning -1 for error
+    private int getNumberWithIncrement() {
+        int num = readNextNumber();
+
+        if (num >= 0) {
+            try {
+                PrintWriter writer = new PrintWriter(ACCOUNT_NUMBER_FILE_NAME);
+                writer.print(num + 1);
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         return num;
     }
