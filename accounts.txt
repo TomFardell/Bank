@@ -10,3 +10,4 @@
 23,Greg,Ching,0.00,maths
 24,Max,Howlett,0.00,guitar
 26,Oliver,Brown,1233.56,STEM
+28,Gracie,Fardell,4.05,slipper
